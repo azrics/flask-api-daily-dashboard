@@ -1,0 +1,38 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily API Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Daily API Dashboard</h1>
+        <p>Displaying data fetched from: <strong>{{ source_name }}</strong></p>
+
+        <div class="card">
+            <h2>Data as of: {{ timestamp }}</h2>
+            <ul>
+                {% for key, value in data.items() %}
+                <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <form method="POST" action="/">
+            <button type="submit" class="refresh-btn">🔁 Refresh Data</button>
+        </form>
+
+        {% if history %}
+        <h3>Last 5 Fetches</h3>
+        <ul class="history">
+            {% for entry in history %}
+            <li>{{ entry.timestamp }} – {{ entry.summary }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
