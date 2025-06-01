@@ -1,24 +1,14 @@
 # app/routes.py
 from flask import Blueprint, render_template, request
 from datetime import datetime
-import random
+from .api_handler import fetch_crypto_data
 
 main = Blueprint('main', __name__)
-
-# Mock history (you can switch to file or DB later)
 history_log = []
-
-def mock_api_fetch():
-    """Simulates API data response"""
-    return {
-        "Bitcoin (BTC)": f"${random.randint(25000, 31000)}",
-        "Ethereum (ETH)": f"${random.randint(1500, 2500)}",
-        "Dogecoin (DOGE)": f"${random.uniform(0.05, 0.15):.3f}"
-    }
 
 @main.route("/", methods=["GET", "POST"])
 def index():
-    data = mock_api_fetch()
+    data = fetch_crypto_data()
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     # Add to history
@@ -32,4 +22,4 @@ def index():
                            data=data, 
                            timestamp=timestamp, 
                            history=history, 
-                           source_name="Mock Crypto API")
+                           source_name="CoinGecko API")
