@@ -28,4 +28,4 @@ jobs:
     - name: Run tests
       run: |
         pytest
-      working-directory: user-management-app/src/test/test_app.py
+      working-directory: user-management-app/src/test
