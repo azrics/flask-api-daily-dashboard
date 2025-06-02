@@ -10,22 +10,80 @@ def client():
             db.create_all()
         yield client
 
-def test_user_registration_and_logout(client):
-    # Register a new user
+def test_user_registration(client):
+    print("\nTesting user registration...")
     response = client.post('/register', data={
         'username': 'testuser',
         'email': 'test@example.com',
         'password': 'testpass'
     }, follow_redirects=True)
     assert b'Login' in response.data
+    print("User registration successful and redirected to login.")
 
-    # Login with the new user
-    response = client.post('/login', data={
-        'username': 'testuser',
+def test_user_login_logout(client):
+    print("\nTesting user login and logout...")
+    # Register first
+    client.post('/register', data={
+        'username': 'testuser2',
+        'email': 'test2@example.com',
         'password': 'testpass'
     }, follow_redirects=True)
-    assert b'Welcome, testuser' in response.data
-
+    # Login
+    response = client.post('/login', data={
+        'username': 'testuser2',
+        'password': 'testpass'
+    }, follow_redirects=True)
+    assert b'Welcome, testuser2' in response.data
+    print("Login successful, dashboard loaded.")
     # Logout
     response = client.get('/logout', follow_redirects=True)
     assert b'User Management' in response.data
+    print("Logout successful, returned to home page.")
+
+def test_update_profile(client):
+    print("\nTesting profile update...")
+    # Register and login
+    client.post('/register', data={
+        'username': 'testuser3',
+        'email': 'test3@example.com',
+        'password': 'testpass'
+    }, follow_redirects=True)
+    client.post('/login', data={
+        'username': 'testuser3',
+        'password': 'testpass'
+    }, follow_redirects=True)
+    # Update profile
+    response = client.post('/update_profile', data={
+        'username': 'updateduser',
+        'email': 'updated@example.com'
+    }, follow_redirects=True)
+    assert b'updateduser' in response.data
+    assert b'updated@example.com' in response.data
+    print("Profile update successful and reflected on dashboard.")
+
+def test_reset_password(client):
+    print("\nTesting password reset...")
+    # Register and login
+    client.post('/register', data={
+        'username': 'testuser4',
+        'email': 'test4@example.com',
+        'password': 'oldpass'
+    }, follow_redirects=True)
+    client.post('/login', data={
+        'username': 'testuser4',
+        'password': 'oldpass'
+    }, follow_redirects=True)
+    # Reset password
+    response = client.post('/reset_password', data={
+        'new_password': 'newpass'
+    }, follow_redirects=True)
+    assert b'Welcome, testuser4' in response.data
+    print("Password reset successful.")
+    # Logout and login with new password
+    client.get('/logout', follow_redirects=True)
+    response = client.post('/login', data={
+        'username': 'testuser4',
+        'password': 'newpass'
+    }, follow_redirects=True)
+    assert b'Welcome, testuser4' in response.data
+    print("Login with new password successful.")
