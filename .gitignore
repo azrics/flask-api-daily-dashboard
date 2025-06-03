@@ -18,7 +18,7 @@ dist/
 build/
 
 # Flask instance folder and SQLite DB
-instance/
+user-management-app/instance/
 user-management-app/src/users.db
 user-management-app/src/db_backups/
 

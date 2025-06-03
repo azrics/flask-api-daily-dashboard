@@ -1,9 +1,16 @@
 from flask import Flask, render_template, redirect, url_for, request, session
 from models import User, db, init_db  # Import db and init_db
+import os
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Change this to a random secret key
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+
+# Ensure the instance folder exists
+instance_path = os.path.join(os.path.dirname(__file__), '..', 'instance')
+os.makedirs(instance_path, exist_ok=True)
+
+# Set the database path inside the instance folder
+app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.abspath(os.path.join(instance_path, 'users.db'))}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 init_db(app)
