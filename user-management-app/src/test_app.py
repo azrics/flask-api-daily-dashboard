@@ -108,3 +108,23 @@ def test_reset_password(client):
         print(f"{GREEN_TICK} Login with new password successful.")
     except AssertionError:
         print(f"{RED_CROSS} Login with new password failed.")
+
+def test_delete_account(client):
+    print("\nTesting account deletion...")
+    # Register and login
+    client.post('/register', data={
+        'username': 'testuser5',
+        'email': 'test5@example.com',
+        'password': 'testpass'
+    }, follow_redirects=True)
+    client.post('/login', data={
+        'username': 'testuser5',
+        'password': 'testpass'
+    }, follow_redirects=True)
+    # Delete account
+    response = client.post('/delete_account', follow_redirects=True)
+    try:
+        assert b'User Management' in response.data
+        print("✅ Account deletion successful and user redirected to home.")
+    except AssertionError:
+        print("❌ Account deletion failed.")

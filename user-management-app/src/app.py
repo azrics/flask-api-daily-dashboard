@@ -88,5 +88,18 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 
+@app.route('/delete_account', methods=['POST'])
+def delete_account():
+    user_id = session.get('user_id')
+    if not user_id:
+        return redirect(url_for('login'))
+    user = User.get_by_id(user_id)
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        session.clear()
+        return redirect(url_for('index'))
+    return redirect(url_for('dashboard'))
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -21,10 +21,13 @@ user-management-app
 
 ## Features
 
-- User registration with username, email, and password.
-- User login with username and password.
-- Password reset functionality for first-time login.
-- User profile dashboard displaying user information.
+- User registration, login, logout
+- Profile update and password reset
+- **Account deletion**
+- Beautiful, responsive UI
+- Pytest-based testing with clear console output
+- GitHub Actions CI/CD pipeline
+- Easy database backup script
 
 ## Setup Instructions
 
