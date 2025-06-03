@@ -4,6 +4,12 @@
 
 This project is a user management application built using Flask. It allows users to register, log in, reset their passwords, and access a profile dashboard.
 
+<p align="center">
+  <a href="https://www.azrics.com/az-courses" target="_blank" style="text-decoration:none;">
+    <img src="https://img.shields.io/badge/View%20All%20Courses-Azrics.com-blueviolet?style=for-the-badge&logo=graduation-cap" alt="View All Courses"/>
+  </a>
+</p>
+
 ## Project Structure
 
 ```
@@ -66,6 +72,23 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 ## 📝 License
 
 This project is part of the **NexVerse Freebie Pack** and is free to use for learning and rapid prototyping.
+
+---
+
+## 📚 FAQ
+
+**Q: I get a database not found error when running the backup script. What should I do?**  
+A: Make sure you have run the app at least once so the database is created in the `instance` folder. Then run the backup script.
+
+**Q: How do I run the tests and see detailed output?**  
+A: Use `pytest -s` in the `src` directory. This will show all test progress and results in the console.
+
+**Q: Can I use this project for my own learning or commercial projects?**  
+A: Yes! This project is part of the NexVerse Freebie Pack and is free to use for learning and rapid prototyping.
+
+**Q: Where can I get help or discuss with the community?**  
+A: Join our Slack channel for support and discussion:  
+[![Join Slack](https://img.shields.io/badge/Join%20Slack-azricsnexverse-blue?logo=slack&style=for-the-badge)](https://azricsnexverse.slack.com/archives/C08UN5M6X0E)
 
 ---
 
