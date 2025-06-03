@@ -1,3 +1,5 @@
+> **Note:** Please fork this repository before making any changes. Do not commit directly to the original NexVerse Freebie Pack repository.
+
 # User Management Application
 
 This project is a user management application built using Flask. It allows users to register, log in, reset their passwords, and access a profile dashboard.
@@ -23,7 +25,7 @@ user-management-app
 
 - User registration, login, logout
 - Profile update and password reset
-- **Account deletion**
+- Account deletion
 - Beautiful, responsive UI
 - Pytest-based testing with clear console output
 - GitHub Actions CI/CD pipeline
@@ -31,23 +33,25 @@ user-management-app
 
 ## Setup Instructions
 
-1. Clone the repository:
+1. Fork the repository to your own GitHub account using the "Fork" button at the top right of the repo page.
+
+2. Clone your forked repository:
    ```
-   git clone <repository-url>
+   git clone https://github.com/<your-username>/user-management-app.git
    cd user-management-app
    ```
 
-2. Install the required dependencies:
+3. Install the required dependencies:
    ```
    pip install -r requirements.txt
    ```
 
-3. Run the application:
+4. Run the application:
    ```
    python src/app.py
    ```
 
-4. Access the application in your web browser at `http://127.0.0.1:5000`.
+5. Access the application in your web browser at `http://127.0.0.1:5000`.
 
 ## Usage Guidelines
 
@@ -58,3 +62,19 @@ user-management-app
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
+
+---
+
+## Changelog
+
+### v1.0.0 (2024-06-03)
+- Initial release as part of NexVerse Freebie Pack
+- User registration, login, logout
+- Profile update and password reset
+- Account deletion feature
+- Beautiful, responsive UI
+- Pytest-based testing with clear console output
+- GitHub Actions CI/CD pipeline
+- Easy database backup script
+
+---
