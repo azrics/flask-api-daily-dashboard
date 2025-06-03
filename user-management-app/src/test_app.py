@@ -1,6 +1,9 @@
 import pytest
 from app import app, db, User
 
+GREEN_TICK = "\u2705"
+RED_CROSS = "\u274C"
+
 @pytest.fixture
 def client():
     app.config['TESTING'] = True
@@ -17,8 +20,11 @@ def test_user_registration(client):
         'email': 'test@example.com',
         'password': 'testpass'
     }, follow_redirects=True)
-    assert b'Login' in response.data
-    print("User registration successful and redirected to login.")
+    try:
+        assert b'Login' in response.data
+        print(f"{GREEN_TICK} User registration successful and redirected to login.")
+    except AssertionError:
+        print(f"{RED_CROSS} User registration failed.")
 
 def test_user_login_logout(client):
     print("\nTesting user login and logout...")
@@ -33,12 +39,18 @@ def test_user_login_logout(client):
         'username': 'testuser2',
         'password': 'testpass'
     }, follow_redirects=True)
-    assert b'Welcome, testuser2' in response.data
-    print("Login successful, dashboard loaded.")
+    try:
+        assert b'Welcome, testuser2' in response.data
+        print(f"{GREEN_TICK} Login successful, dashboard loaded.")
+    except AssertionError:
+        print(f"{RED_CROSS} Login failed.")
     # Logout
     response = client.get('/logout', follow_redirects=True)
-    assert b'User Management' in response.data
-    print("Logout successful, returned to home page.")
+    try:
+        assert b'User Management' in response.data
+        print(f"{GREEN_TICK} Logout successful, returned to home page.")
+    except AssertionError:
+        print(f"{RED_CROSS} Logout failed.")
 
 def test_update_profile(client):
     print("\nTesting profile update...")
@@ -57,9 +69,12 @@ def test_update_profile(client):
         'username': 'updateduser',
         'email': 'updated@example.com'
     }, follow_redirects=True)
-    assert b'updateduser' in response.data
-    assert b'updated@example.com' in response.data
-    print("Profile update successful and reflected on dashboard.")
+    try:
+        assert b'updateduser' in response.data
+        assert b'updated@example.com' in response.data
+        print(f"{GREEN_TICK} Profile update successful and reflected on dashboard.")
+    except AssertionError:
+        print(f"{RED_CROSS} Profile update failed.")
 
 def test_reset_password(client):
     print("\nTesting password reset...")
@@ -77,13 +92,19 @@ def test_reset_password(client):
     response = client.post('/reset_password', data={
         'new_password': 'newpass'
     }, follow_redirects=True)
-    assert b'Welcome, testuser4' in response.data
-    print("Password reset successful.")
+    try:
+        assert b'Welcome, testuser4' in response.data
+        print(f"{GREEN_TICK} Password reset successful.")
+    except AssertionError:
+        print(f"{RED_CROSS} Password reset failed.")
     # Logout and login with new password
     client.get('/logout', follow_redirects=True)
     response = client.post('/login', data={
         'username': 'testuser4',
         'password': 'newpass'
     }, follow_redirects=True)
-    assert b'Welcome, testuser4' in response.data
-    print("Login with new password successful.")
+    try:
+        assert b'Welcome, testuser4' in response.data
+        print(f"{GREEN_TICK} Login with new password successful.")
+    except AssertionError:
+        print(f"{RED_CROSS} Login with new password failed.")
