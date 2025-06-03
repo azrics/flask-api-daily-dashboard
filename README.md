@@ -1,102 +1,67 @@
-# NexVerse Freebie Pack: Flask User Management App
+> **Note:** Please fork this repository before making any changes. Do not commit directly to the original NexVerse Freebie Pack repository.
 
-Welcome to the **NexVerse Freebie Pack**!  
-This repository is a quick-start template for Python web development, automation, and testing using Flask.  
-It includes a user management app with registration, login, profile update, password reset, and a modern UI.  
-You also get a ready-to-use CI/CD pipeline with pytest for automated testing.
+# User Management Application
 
----
+This project is a user management application built using Flask. It allows users to register, log in, reset their passwords, and access a profile dashboard.
 
-## 🚀 Getting Started
+## Project Structure
 
-### 1. Clone the Repository
-
-```sh
-git clone https://github.com/your-username/your-repo.git
-cd your-repo/user-management-app/src
+```
+user-management-app
+├── src
+│   ├── app.py                # Main application file
+│   ├── templates             # HTML templates for the application
+│   │   ├── index.html        # Landing page with registration and login buttons
+│   │   ├── register.html     # Registration form for new users
+│   │   ├── login.html        # Login form for existing users
+│   │   ├── reset_password.html # Password reset form for first-time login
+│   │   └── dashboard.html     # User profile dashboard after successful login
+│   └── models.py             # Data models for user management
+├── requirements.txt           # Project dependencies
+└── README.md                  # Project documentation
 ```
 
-### 2. Install Dependencies
-
-Make sure you have Python 3.11+ installed.
-
-```sh
-pip install -r ../requirements.txt
-```
-
-### 3. Run the Application
-
-```sh
-python app.py
-```
-
-Visit [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser.
-
----
-
-## 🧪 Running Tests
-
-All tests are in the `src` folder and use `pytest`.  
-To run tests locally and see detailed output:
-
-```sh
-pytest -s
-```
-
-You’ll see green ticks (✅) for success and red crosses (❌) for failures, along with clear explanations.
-
----
-
-## 🤖 CI/CD with GitHub Actions
-
-Every push or pull request to the `main` branch triggers automated tests via GitHub Actions.
-
-- Workflow file: `.github/workflows/python-app.yml`
-- Test results and print outputs are visible in the "Actions" tab of your GitHub repo.
-
-**How to view results:**
-1. Go to your repository on GitHub.
-2. Click the "Actions" tab.
-3. Select the latest workflow run to see logs and test results.
-
----
-
-## 🛠️ Making Changes
-
-1. **Edit code or templates** in the `user-management-app/src` directory.
-2. **Add new features or tests** as needed.
-3. **Commit and push** your changes:
-    ```sh
-    git add .
-    git commit -m "Describe your change"
-    git push
-    ```
-4. **Check the Actions tab** on GitHub to ensure all tests pass.
-
----
-
-## 💾 Database Backup
-
-To back up your SQLite database, run:
-
-```sh
-python backup_db.py
-```
-
-Backups are stored in the `db_backups/` folder.
-
----
-
-## 📦 Features
+## Features
 
 - User registration, login, logout
 - Profile update and password reset
+- Account deletion
 - Beautiful, responsive UI
 - Pytest-based testing with clear console output
 - GitHub Actions CI/CD pipeline
 - Easy database backup script
 
----
+## Setup Instructions
+
+1. Fork the repository to your own GitHub account using the "Fork" button at the top right of the repo page.
+
+2. Clone your forked repository:
+   ```
+   git clone https://github.com/<your-username>/user-management-app.git
+   cd user-management-app
+   ```
+
+3. Install the required dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+
+4. Run the application:
+   ```
+   python src/app.py
+   ```
+
+5. Access the application in your web browser at `http://127.0.0.1:5000`.
+
+## Usage Guidelines
+
+- Navigate to the landing page to either register a new account or log in with an existing account.
+- After logging in for the first time, users will be prompted to reset their password.
+- Once logged in, users can access their profile dashboard.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
 
 ## 📝 License
 
@@ -106,3 +71,19 @@ This project is part of the **NexVerse Freebie Pack** and is free to use for lea
 
 Happy coding!  
 **NexVerse Team**
+
+---
+
+## Changelog
+
+### v1.0.0 (2024-06-03)
+- Initial release as part of NexVerse Freebie Pack
+- User registration, login, logout
+- Profile update and password reset
+- Account deletion feature
+- Beautiful, responsive UI
+- Pytest-based testing with clear console output
+- GitHub Actions CI/CD pipeline
+- Easy database backup script
+
+---
